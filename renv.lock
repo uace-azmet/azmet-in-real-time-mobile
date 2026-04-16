@@ -682,6 +682,36 @@
       "Maintainer": "Hadley Wickham <hadley@posit.co>",
       "Repository": "RSPM"
     },
+    "geoloc": {
+      "Package": "geoloc",
+      "Version": "0.0.0.9500",
+      "Source": "GitHub",
+      "Title": "Geolocation in Shiny",
+      "Authors@R": "c( person('Colin', 'Fay', email = 'contact@colinfay.me', role = c('cre', 'aut')), person('John', 'Coene', email = 'jcoenep@gmail.com', role = 'ctb') )",
+      "Description": "Add geolocation inside your shiny app.",
+      "License": "MIT + file LICENSE",
+      "LazyData": "true",
+      "URL": "https://github.com/ColinFay/geoloc",
+      "BugReports": "https://github.com/ColinFay/geoloc/issues",
+      "Encoding": "UTF-8",
+      "Suggests": [
+        "testthat"
+      ],
+      "Imports": [
+        "attempt",
+        "shiny",
+        "jsonlite"
+      ],
+      "RoxygenNote": "6.1.99.9001",
+      "Author": "Colin Fay [cre, aut], John Coene [ctb]",
+      "Maintainer": "Colin Fay <contact@colinfay.me>",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "ColinFay",
+      "RemoteRepo": "geoloc",
+      "RemoteRef": "master",
+      "RemoteSha": "5d6eb6220cc721adc083064788ea3c65e60d2909"
+    },
     "glue": {
       "Package": "glue",
       "Version": "1.8.0",

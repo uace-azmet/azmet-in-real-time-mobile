@@ -68,4 +68,9 @@ theme =
     .tooltip-inner {
       background-color: rgba(30, 82, 136, 0.9) !important;
     }
+    
+    .bslib-value-box .value-box-showcase {
+        align-items: left !important;
+        padding-left: 0 !important;
+      }
   ")

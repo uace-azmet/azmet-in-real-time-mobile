@@ -1,5 +1,19 @@
 /* class */
 
+[data-title]:after {
+    background-color: rgba(30,82,136,0.8) !important;
+    border-radius: var(--bs-border-radius) !important;
+    color: #FFFFFF !important;
+    content: attr(data-title);
+    font-family: proxima-nova, calibri, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\" !important;
+    font-weight: normal !important;
+}
+
+[data-title]:before {
+    border-left-color: rgba(30,82,136,0.8) !important;
+    content: attr(data-title);
+}
+
 .bolder-icon {
   stroke-width: 0.5;
   stroke: currentColor; /* Inherits the 'color' property of the parent */
@@ -41,8 +55,12 @@
   font-weight: bold;
 }
 
-.data-options-title {
+/* .data-options-title {
   padding-bottom: 1rem !important;
+} */
+
+.download-buttons-div {
+  padding-bottom: 48px;
 }
 
 .img-fluid {
@@ -75,4 +93,14 @@
 
 .selectize-input.items.full.has-options.has-items {
   border-radius: 0px !important;
+}
+
+.value-box-title {
+  color: #191919;
+  font-weight: bold !important;
+}
+
+.value-box-value {
+  color: #191919;
+  font-weight: bold !important;
 }

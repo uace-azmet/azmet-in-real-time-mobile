@@ -38,8 +38,8 @@ ui <-
         # htmltools::tags$head(htmltools::includeHTML("www/pwa/pwa.html")),
         
         htmltools::p(
-          bsicons::bs_icon("sliders", class = "bolder-icon"), 
-          htmltools::HTML("&nbsp;<strong>DATA OPTIONS</strong>&nbsp;"),
+          # bsicons::bs_icon("sliders", class = "bolder-icon"), 
+          htmltools::HTML("&nbsp;<strong>AZMet Station</strong>&nbsp;"),
           bslib::tooltip(
             bsicons::bs_icon("info-circle"),
             "Specify an AZMet station or tap on the location pin to select the nearest one.",
@@ -56,7 +56,16 @@ ui <-
           
           shiny::selectInput(
             inputId = "azmetStation", 
-            label = "AZMet Station",
+            label = NULL,
+              # htmltools::p(
+              #   "AZMet Station",
+              #   bslib::tooltip(
+              #     bsicons::bs_icon("info-circle"),
+              #     "Specify an AZMet station or tap on the location pin to select the nearest one.",
+              #     id = "infoDataOptions",
+              #     placement = "right"
+              #   )
+              # ),
             choices = station_choices,
             selected = station_choices[1]
           ),
@@ -70,6 +79,52 @@ ui <-
               ),
             class = "btn btn-default btn-blue geoloc"
           )
+        ),
+        
+        # htmltools::div(
+        #   # class = "col-12",
+        #   htmltools::hr()
+        # ),
+        
+        value_box(
+          class = "border-0 shadow-none",
+          fill = TRUE,
+          full_screen = FALSE,
+          height = NULL,
+          id = NULL,
+          max_height = NULL,
+          min_height = NULL,
+          theme = NULL,
+          
+          showcase = bs_icon("graph-up"),
+          showcase_layout = showcase_left_center(width = 0.5),
+          title = "Air Temperature",
+          value = "99 °F",
+          p("Feels like 109 °F")
+        ),
+        
+        value_box(
+          title = "I got",
+          value = "99 problems",
+          showcase = bs_icon("music-note-beamed"),
+          p("bslib ain't one", bs_icon("emoji-smile")),
+          p("hit me", bs_icon("suit-spade"))
+        ),
+        
+        value_box(
+          title = "I got",
+          value = "99 problems",
+          showcase = bs_icon("music-note-beamed"),
+          p("bslib ain't one", bs_icon("emoji-smile")),
+          p("hit me", bs_icon("suit-spade"))
+        ),
+        
+        value_box(
+          title = "I got",
+          value = "99 problems",
+          showcase = bs_icon("music-note-beamed"),
+          p("bslib ain't one", bs_icon("emoji-smile")),
+          p("hit me", bs_icon("suit-spade"))
         )
       )
   ) # htmltools::htmlTemplate()
@@ -129,6 +184,20 @@ server <- function(input, output, session) {
   
   # Outputs -----
   
+  # Temperature outputs (both regular and fullscreen)
+  output$temp_current <- renderText({
+    paste0(station_data() |> slice_tail(n = 1) |> pull(temp_airC), "°C")
+  })
+
+  output$temp_plot <- renderPlot({
+    p <- ggplot(station_data(), aes(x = datetime, y = temp_airC)) +
+      geom_line(linewidth = 1.5) +
+      geom_point(size = 3) +
+      scale_y_continuous(labels = \(x) paste(x, "ºC")) +
+      scale_x_datetime(date_breaks = "hours", date_labels = "%I:%M %p") +
+      theme(axis.title = element_blank())
+    plot(p)
+  })
 }
 
 

@@ -6,7 +6,7 @@
 
 
 # # For now just get data for all sites on app load
-data <- az_15min(start = now() - hours(3), end = now())
+data <- fxn_az15min()
 
 station_choices <- azmetr::station_info |>
   select(
@@ -31,6 +31,8 @@ ui <-
       
       bslib::page_fillable(
         title = NULL,
+        fillable = FALSE,
+        fillable_mobile = FALSE,
         theme = theme, # `scr##_theme.R`
         
         # htmltools::tags$head(htmltools::includeHTML("www/pwa/pwa.html")),
@@ -55,16 +57,17 @@ ui <-
           shiny::selectInput(
             inputId = "azmetStation", 
             label = "AZMet Station",
-            choices = c("Group 1", "Group 2", "Group 3", "Group 4", "Group 5", "Group 6"),
-            selected = c("Group 1", "Group 2", "Group 3", "Group 4", "Group 5", "Group 6")[1]
+            choices = station_choices,
+            selected = station_choices[1]
           ),
           
           shiny::actionButton(
             inputId = "open",
-            label = span(
-              bsicons::bs_icon("geo-alt", class = "bolder-icon geoloc"),
-              textOutput("selected_station", container = span)
-            ),
+            label = 
+              span(
+                bsicons::bs_icon("geo-alt", class = "bolder-icon geoloc"),
+                textOutput("selected_station", container = span)
+              ),
             class = "btn btn-default btn-blue geoloc"
           )
         )
@@ -76,6 +79,49 @@ ui <-
 
 
 server <- function(input, output, session) {
+  
+  
+  # Set a default station
+  # TODO: use cookies for this
+  station <- reactiveVal("az01")
+  
+  # Create modal to contain picker with location button
+  observeEvent(input$open, {
+    showModal(
+      # TODO: it would be nice if making a selection closed the modal
+      modalDialog(
+        location_select_ui(
+          "loc_module",
+          "Select a station:",
+          station_choices,
+          selected = station()
+        ),
+        footer = NULL,
+        easyClose = TRUE
+      )
+    )
+  })
+  
+  # Get results of location selection
+  station_id_choice <- location_select_server(
+    "loc_module",
+    station_choices
+  )
+  
+  # When a choice is made, update the default station
+  observeEvent(station_id_choice(), {
+    station(isolate(station_id_choice()))
+  })
+  
+  # Print the station name for the modal button.
+  output$selected_station <- renderText({
+    station_choices |> filter(value == station()) |> pull(choice)
+  })
+  
+  station_data <- reactive({
+    data |> filter(meta_station_id == station())
+  })
+  
   
   # Observables -----
   

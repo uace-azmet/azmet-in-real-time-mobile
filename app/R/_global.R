@@ -5,6 +5,7 @@ library(azmetr)
 library(bsicons)
 library(bslib)
 library(dplyr)
+library(geoloc) # https://github.com/ColinFay/geoloc
 library(htmltools)
 library(lubridate)
 # library(plotly)
@@ -25,6 +26,10 @@ library(shiny)
 
 
 # Variables --------------------
+
+
+azmetStationMetadata <- azmetr::station_info |>
+  dplyr::mutate(end_date = NA)
 
 
 # Other --------------------

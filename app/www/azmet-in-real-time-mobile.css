@@ -14,40 +14,14 @@
     content: attr(data-title);
 }
 
-.bolder-icon {
-  stroke-width: 0.5;
-  stroke: currentColor; /* Inherits the 'color' property of the parent */
-}
-
-.bolder-icon.geoloc {
-  transform: scale(1.5);
-}
-
-.btn.geoloc {
-  background-color: transparent; 
-  border-color: transparent; 
+.azmet-station-title {
   color: #191919;
+  font-weight: bold;
+  margin-bottom: 0px !important;
 }
 
-.btn:active {
-  background-color: rgb(226, 233, 235) !important;
-  border-color: transparent !important; 
-  box-shadow: 0 0 0 0.0rem rgb(30, 82, 136, 0.2) !important;
-  color: #191919 !important;
-}
-
-.btn:focus {
-  background-color: transparent;
-  border-color: transparent; 
-  box-shadow: 0 0 0 0.1rem rgb(204, 204, 204, 0.2) !important;
-  color: #191919;
-}
-
-.btn:hover {
-  background-color: transparent; 
-  border-color: transparent; 
-  box-shadow: 0 0 0 0.0rem rgb(0, 28, 72, 0.2) !important;
-  color: #191919;
+.azmet-station-selection-div {
+  padding-bottom: 48px;
 }
 
 .control-label {
@@ -55,19 +29,52 @@
   font-weight: bold;
 }
 
-/* .data-options-title {
-  padding-bottom: 1rem !important;
-} */
-
-.download-buttons-div {
-  padding-bottom: 48px;
+.form-group.shiny-input-container {
+  margin-top: 8px;
 }
 
-.img-fluid {
+.img-fluid { /* AZMet logo */
   width: 80%;
 }
 
-.qs-site-logo.d-block {
+.locator-pin {
+  margin-bottom: 4px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  stroke: currentColor; /* Inherits the 'color' property of the parent */
+  stroke-width: 0.5;
+  transform: scale(1.5);
+}
+
+.locator-pin {
+  background-color: transparent; 
+  border-color: transparent; 
+  color: #191919;
+}
+
+.locator-pin:active {
+  background-color: rgb(226, 233, 235) !important;
+  border-color: transparent !important; 
+  box-shadow: 0 0 0 0.0rem rgb(30, 82, 136, 0.2) !important;
+  color: #191919 !important;
+}
+
+.locator-pin:focus {
+  background-color: transparent;
+  border-color: transparent; 
+  box-shadow: 0 0 0 0.1rem rgb(204, 204, 204, 0.2) !important;
+  color: #191919;
+}
+
+.locator-pin:hover {
+  background-color: transparent; 
+  border-color: transparent; 
+  box-shadow: 0 0 0 0.0rem rgb(0, 28, 72, 0.2) !important;
+  color: #191919;
+}
+
+.qs-site-logo.d-block { /* AZMet logo */
   margin-bottom: 30px !important;
   margin-top: 30px !important;
 }

@@ -38,45 +38,31 @@ ui <-
         # htmltools::tags$head(htmltools::includeHTML("www/pwa/pwa.html")),
         
         htmltools::p(
-          # bsicons::bs_icon("sliders", class = "bolder-icon"), 
-          htmltools::HTML("&nbsp;<strong>AZMet Station</strong>&nbsp;"),
+          class = "azmet-station-title",
+          
+          htmltools::HTML("&nbsp;AZMet Station&nbsp;"),
           bslib::tooltip(
             bsicons::bs_icon("info-circle"),
-            "Specify an AZMet station or tap on the location pin to select the nearest one.",
-            id = "infoDataOptions",
+            "Select an AZMet station or tap on the location pin to choose the nearest one.",
+            id = "azmetStation",
             placement = "right"
-          ),
-          
-          class = "data-options-title"
+          )
         ),
         
         htmltools::div(
-          class = "download-buttons-div",
+          class = "azmet-station-selection-div",
           style = "display: flex; align-items: center; column-gap: 1.5rem;", # Flexbox styling
           
           shiny::selectInput(
             inputId = "azmetStation", 
             label = NULL,
-              # htmltools::p(
-              #   "AZMet Station",
-              #   bslib::tooltip(
-              #     bsicons::bs_icon("info-circle"),
-              #     "Specify an AZMet station or tap on the location pin to select the nearest one.",
-              #     id = "infoDataOptions",
-              #     placement = "right"
-              #   )
-              # ),
             choices = station_choices,
             selected = station_choices[1]
           ),
           
           shiny::actionButton(
-            inputId = "open",
-            label = 
-              span(
-                bsicons::bs_icon("geo-alt", class = "bolder-icon geoloc"),
-                textOutput("selected_station", container = span)
-              ),
+            inputId = "locatorPin",
+            label = bsicons::bs_icon("geo-alt", class = "locator-pin"),
             class = "btn btn-default btn-blue geoloc"
           )
         ),
@@ -141,7 +127,7 @@ server <- function(input, output, session) {
   station <- reactiveVal("az01")
   
   # Create modal to contain picker with location button
-  observeEvent(input$open, {
+  observeEvent(input$locatorPin, {
     showModal(
       # TODO: it would be nice if making a selection closed the modal
       modalDialog(

@@ -44,7 +44,7 @@ ui <-
           bslib::tooltip(
             bsicons::bs_icon("info-circle"),
             "Select an AZMet station or tap on the location pin to choose the nearest one.",
-            id = "azmetStation",
+            id = "azmetStationInfo",
             placement = "right"
           )
         ),
@@ -141,7 +141,7 @@ server <- function(input, output, session) {
   
   # Reactives -----
   
-  az15min <- 
+  az15min <-
     shiny::reactive({
       fxn_az15min(input$azmetStation)
     }) %>%
@@ -153,14 +153,17 @@ server <- function(input, output, session) {
   
   valueBoxLayout <- 
     shiny::eventReactive(input$azmetStation, {
-      fxn_valueBoxLayout()
+      fxn_valueBoxLayout(inData = az15min())
     })
   
   
   # Outputs -----
   
   output$p1 <- renderPlot({
-    ggplot(mtcars, aes(wt, mpg)) + geom_point(color = "#606060") + theme_void()
+    ggplot(az15min(), aes(lubridate::as_datetime(datetime), temp_airF)) + 
+      geom_line(color = "#606060") + 
+      geom_point(data = dplyr::filter(az15min(), lubridate::as_datetime(datetime) == max(lubridate::as_datetime(datetime))), color = "#606060") +
+      theme_void()
   })
   
   output$p2 <- renderPlot({

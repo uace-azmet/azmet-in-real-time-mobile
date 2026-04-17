@@ -1,4 +1,4 @@
-fxn_valueBoxLayout <- function() {
+fxn_valueBoxLayout <- function(inData) {
   
   vb_T <- 
     value_box(
@@ -12,8 +12,17 @@ fxn_valueBoxLayout <- function() {
       theme = NULL,
       
       title = "Air Temperature",
-      value = "99.0 °F",
-      htmltools::p("Heat index: NA °F"), # Make into conditional
+      # value = "99.0 °F",
+      value = 
+        paste0(
+          dplyr::filter(
+            inData, 
+            lubridate::as_datetime(datetime) == max(lubridate::as_datetime(datetime))
+          ) %>% 
+            dplyr::pull(temp_airF),
+          " °F"
+        ),
+      # htmltools::p("Heat index: NA °F"), # Make into conditional
       htmltools::p("Maximum: 112.5 °F"),
       htmltools::p("Minimum: 89.1 °F"),
       showcase = shiny::plotOutput("p1"),
@@ -82,6 +91,7 @@ fxn_valueBoxLayout <- function() {
       value = "10.5 mph",
       htmltools::p("Direction: easterly"),
       htmltools::p("Maximum: 33.7 mph"),
+      # htmltools::p("Wind chill: NA °F"), # Make into conditional
       showcase = shiny::plotOutput("p7"),
       showcase_layout = bslib::showcase_left_center(width = 0.45)
     )

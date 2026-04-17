@@ -18,10 +18,10 @@ fxn_az15min <- function(azmetStation) {
   
   az15min <- 
     azmetr::az_15min(
-      station_id = 
-        dplyr::filter(azmetStationMetadata, meta_station_name == azmetStation) |> 
+      station_id =
+        dplyr::filter(azmetStationMetadata, meta_station_name == azmetStation) |>
         dplyr::pull(meta_station_id),
-      start_date_time = 
+      start_date_time =
         lubridate::now(tzone = "America/Phoenix") - lubridate::hours(12)
     ) |>
     
@@ -121,9 +121,9 @@ fxn_az15min <- function(azmetStation) {
         ),
         \(x) round(x, digits = 2)
       )
-    ) |>
+    ) #|>
     
-    dplyr::arrange(meta_station_name)
+    # dplyr::arrange(meta_station_name)
   
   on.exit(shiny::removeNotification(id = idRetrievingData), add = TRUE)
   

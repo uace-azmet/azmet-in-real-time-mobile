@@ -40,7 +40,7 @@ azmetStationChoices <- azmetStationMetadata |>
   dplyr::pull(meta_station_name) |> 
   sort()
 
-azmetStationChoices <- c("", azmetStationChoices)
+azmetStationChoices <- c(NULL, azmetStationChoices)
 
 showLatestUpdate <- shiny::reactiveVal(FALSE)
 showPageBottomText <- shiny::reactiveVal(FALSE)

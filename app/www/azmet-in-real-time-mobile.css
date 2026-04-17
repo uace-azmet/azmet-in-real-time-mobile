@@ -1,37 +1,145 @@
 /* class */
 
-.btn {
-  background-color: #FFFFFF; 
-  border-color: #001C48; 
-  color: #001C48;
+[data-title]:after {
+    background-color: rgba(30,82,136,0.8) !important;
+    border-radius: var(--bs-border-radius) !important;
+    color: #FFFFFF !important;
+    content: attr(data-title);
+    font-family: proxima-nova, calibri, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\" !important;
+    font-weight: normal !important;
 }
 
-.btn:active {
-  background-color: #1E5288 !important;
-  border-color: #1E5288 !important; 
+[data-title]:before {
+    border-left-color: rgba(30,82,136,0.8) !important;
+    content: attr(data-title);
+}
+
+.azmet-station-title {
+  color: #191919;
+  font-weight: bold;
+  margin-bottom: 0px !important;
+}
+
+.azmet-station-selection-div {
+  padding-bottom: 32px;
+}
+
+.btn.geoloc {
+  background-color: transparent; 
+  border-color: transparent; 
+  color: #191919;
+}
+
+.btn.geoloc:active {
+  background-color: rgb(226, 233, 235) !important;
+  border-color: transparent !important; 
   box-shadow: 0 0 0 0.0rem rgb(30, 82, 136, 0.2) !important;
-  color: #FFFFFF !important;
+  color: #191919 !important;
 }
 
-.btn:focus {
-  background-color: #FFFFFF;
-  border-color: #001C48; 
+.btn.geoloc:focus {
+  background-color: transparent;
+  border-color: transparent; 
+  box-shadow: 0 0 0 0.1rem rgb(204, 204, 204, 0.2) !important;
+  color: #191919;
+}
+
+.btn.geoloc:hover {
+  background-color: transparent; 
+  border-color: transparent; 
   box-shadow: 0 0 0 0.0rem rgb(0, 28, 72, 0.2) !important;
-  color: #001C48;
+  color: #191919;
 }
 
-.btn:hover {
-  background-color: #FFFFFF; 
-  border-color: #001C48; 
-  box-shadow: 0 0 0 0.0rem rgb(0, 28, 72, 0.2) !important;
-  color: #001C48;
+.control-label {
+  color: var(--bs-body-color); 
+  font-weight: bold;
 }
 
-.img-fluid {
+.form-group.shiny-input-container {
+  margin-top: 8px;
+}
+
+.img-fluid { /* AZMet logo */
   width: 80%;
 }
 
-.qs-site-logo.d-block {
+.latest-update {
+  color: #606060;
+  font-family: monospace !important;
+  font-size: 0.85rem;
+  /* margin-bottom: 12px; */
+  /* margin-top: 12px; */
+}
+
+.locator-pin {
+  margin-bottom: 4px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  stroke: currentColor; /* Inherits the 'color' property of the parent */
+  stroke-width: 0.5;
+  transform: scale(1.5);
+}
+
+.qs-site-logo.d-block { /* AZMet logo */
   margin-bottom: 30px !important;
   margin-top: 30px !important;
 }
+
+.page-bottom-text {
+  color: #191919;
+  font-size: 0.85rem;
+  margin-top: 16px;
+}
+
+.selectize-dropdown .active {
+  background-color: rgb(226, 233, 235) !important; 
+  color: var(--bs-body-color) !important;
+}
+
+.selectize-dropdown .active:not(.selected) {
+  background-color: rgb(226, 233, 235) !important; 
+  color: var(--bs-body-color) !important;
+}
+
+.selectize-dropdown .selected:not(.active) {
+  background-color: var(--bs-body-bg) !important; 
+  color: var(--bs-body-color) !important;
+}
+
+.selectize-input {
+  border-color: #CCCCCC !important;
+}
+
+.selectize-input.items.full.has-options.has-items {
+  border-radius: 0px !important;
+}
+
+.shiny-notification {
+  background-color: rgba(30,82,136,0.8) !important; 
+  border-radius: var(--bs-border-radius) !important;
+  box-shadow: 0px 1px 2px rgba(var(--bslib-box-shadow-color-rgb)) !important;
+  color: #FFFFFF !important;
+  font-size: 12pt !important;
+  font-style: italic !important; 
+  font-weight: normal !important;
+  left: calc(50% - 150px) !important;
+  position: fixed !important; 
+  top: calc(50%) !important; 
+}
+
+.value-box-title {
+  color: #191919;
+  font-weight: bold !important;
+}
+
+.value-box-value {
+  color: #191919;
+  font-weight: bold !important;
+}
+
+/* .bslib-value-box .value-box-showcase {
+        align-items: left !important;
+        padding-left: 0 !important;
+      } */

@@ -6,13 +6,14 @@ library(bsicons)
 library(bslib)
 library(dplyr)
 library(geoloc) # https://github.com/ColinFay/geoloc
+library(ggplot2)
 library(htmltools)
 library(lubridate)
 # library(plotly)
 # library(RColorBrewer)
 # library(reactable)
 library(shiny)
-# library(shinyjs)
+library(shinyjs)
 
 
 # Files --------------------
@@ -28,8 +29,25 @@ library(shiny)
 # Variables --------------------
 
 
+# Initialize, part of keeping `input$azmetStation` selection when refreshing data
+# azmetStation <- shiny::reactiveVal(value = "Aguila")
+
 azmetStationMetadata <- azmetr::station_info |>
   dplyr::mutate(end_date = NA)
 
+azmetStationChoices <- azmetStationMetadata |> 
+  dplyr::filter(meta_station_name != "Test") |>
+  dplyr::pull(meta_station_name) |> 
+  sort()
+
+azmetStationChoices <- c("", azmetStationChoices)
+
+showLatestUpdate <- shiny::reactiveVal(FALSE)
+showPageBottomText <- shiny::reactiveVal(FALSE)
+showValueBoxLayout <- shiny::reactiveVal(FALSE)
+
 
 # Other --------------------
+
+
+shiny::addResourcePath("shinyjs", system.file("srcjs", package = "shinyjs"))

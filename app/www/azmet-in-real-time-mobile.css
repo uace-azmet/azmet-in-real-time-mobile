@@ -21,7 +21,34 @@
 }
 
 .azmet-station-selection-div {
-  padding-bottom: 48px;
+  padding-bottom: 32px;
+}
+
+.btn.geoloc {
+  background-color: transparent; 
+  border-color: transparent; 
+  color: #191919;
+}
+
+.btn.geoloc:active {
+  background-color: rgb(226, 233, 235) !important;
+  border-color: transparent !important; 
+  box-shadow: 0 0 0 0.0rem rgb(30, 82, 136, 0.2) !important;
+  color: #191919 !important;
+}
+
+.btn.geoloc:focus {
+  background-color: transparent;
+  border-color: transparent; 
+  box-shadow: 0 0 0 0.1rem rgb(204, 204, 204, 0.2) !important;
+  color: #191919;
+}
+
+.btn.geoloc:hover {
+  background-color: transparent; 
+  border-color: transparent; 
+  box-shadow: 0 0 0 0.0rem rgb(0, 28, 72, 0.2) !important;
+  color: #191919;
 }
 
 .control-label {
@@ -37,6 +64,14 @@
   width: 80%;
 }
 
+.latest-update {
+  color: #606060;
+  font-family: monospace !important;
+  font-size: 0.85rem;
+  /* margin-bottom: 12px; */
+  /* margin-top: 12px; */
+}
+
 .locator-pin {
   margin-bottom: 4px;
   margin-left: 0px;
@@ -47,36 +82,15 @@
   transform: scale(1.5);
 }
 
-.locator-pin {
-  background-color: transparent; 
-  border-color: transparent; 
-  color: #191919;
-}
-
-.locator-pin:active {
-  background-color: rgb(226, 233, 235) !important;
-  border-color: transparent !important; 
-  box-shadow: 0 0 0 0.0rem rgb(30, 82, 136, 0.2) !important;
-  color: #191919 !important;
-}
-
-.locator-pin:focus {
-  background-color: transparent;
-  border-color: transparent; 
-  box-shadow: 0 0 0 0.1rem rgb(204, 204, 204, 0.2) !important;
-  color: #191919;
-}
-
-.locator-pin:hover {
-  background-color: transparent; 
-  border-color: transparent; 
-  box-shadow: 0 0 0 0.0rem rgb(0, 28, 72, 0.2) !important;
-  color: #191919;
-}
-
 .qs-site-logo.d-block { /* AZMet logo */
   margin-bottom: 30px !important;
   margin-top: 30px !important;
+}
+
+.page-bottom-text {
+  color: #191919;
+  font-size: 0.85rem;
+  margin-top: 16px;
 }
 
 .selectize-dropdown .active {
@@ -102,6 +116,19 @@
   border-radius: 0px !important;
 }
 
+.shiny-notification {
+  background-color: rgba(30,82,136,0.8) !important; 
+  border-radius: var(--bs-border-radius) !important;
+  box-shadow: 0px 1px 2px rgba(var(--bslib-box-shadow-color-rgb)) !important;
+  color: #FFFFFF !important;
+  font-size: 12pt !important;
+  font-style: italic !important; 
+  font-weight: normal !important;
+  left: calc(50% - 150px) !important;
+  position: fixed !important; 
+  top: calc(50%) !important; 
+}
+
 .value-box-title {
   color: #191919;
   font-weight: bold !important;
@@ -111,3 +138,8 @@
   color: #191919;
   font-weight: bold !important;
 }
+
+/* .bslib-value-box .value-box-showcase {
+        align-items: left !important;
+        padding-left: 0 !important;
+      } */

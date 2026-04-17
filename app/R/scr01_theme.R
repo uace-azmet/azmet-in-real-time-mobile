@@ -22,7 +22,8 @@ theme =
     heading_font = NULL,
     font_scale = NULL,
     bootswatch = NULL,
-    "bslib-spacer" = "1.5rem",
+    "bslib-grid-height" = "0rem",
+    "bslib-spacer" = "0rem",
     "card-border-radius" = 0,
     "focus-ring-color" = rgb(0, 0, 0, 0.1),
     "focus-ring-width" = "0.1rem",
@@ -68,9 +69,4 @@ theme =
     .tooltip-inner {
       background-color: rgba(30, 82, 136, 0.9) !important;
     }
-    
-    .bslib-value-box .value-box-showcase {
-        align-items: left !important;
-        padding-left: 0 !important;
-      }
   ")

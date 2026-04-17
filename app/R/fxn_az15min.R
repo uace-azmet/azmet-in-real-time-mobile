@@ -1,27 +1,31 @@
 #' `fxn_az15min.R` Download and transform AZMet 15-minute data
 #' 
-#' @return `az15min` - Downloaded 15-minute data and transformed variables over previous 24 hours, tibble format
+#' @param azmetStation - AZMet station selection by user
+#' @return `az15min` - Downloaded 15-minute data and transformed variables over previous 12 hours, tibble format
 
 
-fxn_az15min <- function() {
+fxn_az15min <- function(azmetStation) {
   
-  # idRetrievingData <- 
-  #   shiny::showNotification(
-  #     ui = "Retrieving the latest data . . .", 
-  #     action = NULL, 
-  #     duration = NULL, 
-  #     closeButton = FALSE,
-  #     id = "idRetrievingData",
-  #     type = "message"
-  #   )
+  idRetrievingData <-
+    shiny::showNotification(
+      ui = "Retrieving the latest data . . .",
+      action = NULL,
+      duration = NULL,
+      closeButton = FALSE,
+      id = "idRetrievingData",
+      type = "message"
+    )
   
   az15min <- 
     azmetr::az_15min(
+      station_id = 
+        dplyr::filter(azmetStationMetadata, meta_station_name == azmetStation) |> 
+        dplyr::pull(meta_station_id),
       start_date_time = 
-        lubridate::now(tzone = "America/Phoenix") - lubridate::hours(24)
+        lubridate::now(tzone = "America/Phoenix") - lubridate::hours(12)
     ) |>
     
-    dplyr::filter(meta_station_name != "Test") |>
+    # dplyr::filter(meta_station_name != "Test") |>
     
     dplyr::mutate(
       datetime = format(datetime, format = "%Y-%m-%d %H:%M:%S"),
@@ -121,7 +125,7 @@ fxn_az15min <- function() {
     
     dplyr::arrange(meta_station_name)
   
-  # on.exit(shiny::removeNotification(id = idRetrievingData), add = TRUE)
+  on.exit(shiny::removeNotification(id = idRetrievingData), add = TRUE)
   
   return(az15min)
 }

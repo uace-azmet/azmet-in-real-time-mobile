@@ -159,41 +159,6 @@ server <- function(input, output, session) {
   
   # Outputs -----
   
-  output$p1 <- renderPlot({
-    ggplot(az15min(), aes(lubridate::as_datetime(datetime), temp_airF)) + 
-      geom_line(color = "#606060") + 
-      geom_point(data = dplyr::filter(az15min(), lubridate::as_datetime(datetime) == max(lubridate::as_datetime(datetime))), color = "#606060") +
-      theme_void()
-  })
-  
-  output$p2 <- renderPlot({
-    ggplot(mtcars, aes(wt, mpg)) + geom_point(color = "#606060") + theme_void()
-  })
-  
-  output$p3 <- renderPlot({
-    ggplot(mtcars, aes(wt, mpg)) + geom_point(color = "#606060") + theme_void()
-  })
-  
-  output$p4 <- renderPlot({
-    ggplot(mtcars, aes(wt, mpg)) + geom_point(color = "#606060") + theme_void()
-  })
-  
-  output$p5 <- renderPlot({
-    ggplot(mtcars, aes(wt, mpg)) + geom_point(color = "#606060") + theme_void()
-  })
-  
-  output$p6 <- renderPlot({
-    ggplot(mtcars, aes(wt, mpg)) + geom_point(color = "#606060") + theme_void()
-  })
-  
-  output$p7 <- renderPlot({
-    ggplot(mtcars, aes(wt, mpg)) + geom_point(color = "#606060") + theme_void()
-  })
-  
-  output$p8 <- renderPlot({
-    ggplot(mtcars, aes(wt, mpg)) + geom_point(color = "#606060") + theme_void()
-  })
-  
   output$latestUpdate <- 
     shiny::renderUI({
       fxn_latestUpdate(inData = az15min())
@@ -203,6 +168,46 @@ server <- function(input, output, session) {
     shiny::renderUI({
       shiny::req(showPageBottomText())
       fxn_pageBottomText()
+    })
+  
+  output$vbChart_P <- 
+    renderPlot({
+      fxn_valueBoxChart(inData = az15min(), inVariable = precip_total_in)
+    })
+  
+  output$vbChart_RH <- 
+    renderPlot({
+      fxn_valueBoxChart(inData = az15min(), inVariable = relative_humidity)
+    })
+  
+  output$vbChart_SR <- 
+    renderPlot({
+      fxn_valueBoxChart(inData = az15min(), inVariable = sol_rad_Wm2)
+    })
+  
+  output$vbChart_T <- 
+    renderPlot({
+      fxn_valueBoxChart(inData = az15min(), inVariable = temp_airF)
+    })
+  
+  output$vbChart_Tsoil10cm <- 
+    renderPlot({
+      fxn_valueBoxChart(inData = az15min(), inVariable = temp_soil_10cmF)
+    })
+  
+  output$vbChart_Tsoil50cm <- 
+    renderPlot({
+      fxn_valueBoxChart(inData = az15min(), inVariable = temp_soil_50cmF)
+    })
+  
+  output$vbChart_WS <- 
+    renderPlot({
+      fxn_valueBoxChart(inData = az15min(), inVariable = wind_spd_mph)
+    })
+  
+  output$vbChart_WS2min <- 
+    renderPlot({
+      fxn_valueBoxChart(inData = az15min(), inVariable = wind_2min_spd_mean_mph)
     })
   
   output$valueBoxLayout <- 

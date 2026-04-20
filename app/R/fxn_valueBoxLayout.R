@@ -26,18 +26,23 @@ fxn_valueBoxLayout <- function(inData) {
       showcase_layout = bslib::showcase_left_center(width = 0.45),
       
       title = "Air Temperature",
-      value = paste0(dataPoint %>% dplyr::pull(temp_airF), " °F"),
+      value = 
+        paste0(format(dataPoint %>% dplyr::pull(temp_airF), nsmall = 1), " °F"),
       
       # htmltools::p("Heat index: NA °F"), # Make into conditional
-      # htmltools::p("Wind chill: NA °F"), # Make into conditional
       htmltools::p(
         class = "value-box-text", 
-        paste0("Maximum: ", dataPoint %>% dplyr::pull(temp_air_maxF), " °F")
+        paste0(
+          "Maximum: ", format(dataPoint %>% dplyr::pull(temp_air_maxF), nsmall = 1), " °F"
+        )
       ),
       htmltools::p(
         class = "value-box-text", 
-        paste0("Minimum: ", dataPoint %>% dplyr::pull(temp_air_minF), " °F")
+        paste0(
+          "Minimum: ", format(dataPoint %>% dplyr::pull(temp_air_minF), nsmall = 1), " °F"
+        )
       )
+      # htmltools::p("Wind chill: NA °F"), # Make into conditional
     )
   
   vb_RH <- 
@@ -55,11 +60,14 @@ fxn_valueBoxLayout <- function(inData) {
       showcase_layout = bslib::showcase_left_center(width = 0.45),
       
       title = "Relative Humidity",
-      value = paste0(dataPoint %>% dplyr::pull(relative_humidity), " %"),
+      value = 
+        paste0(format(dataPoint %>% dplyr::pull(relative_humidity), nsmall = 0), " %"),
       
       htmltools::p(
         class = "value-box-text", 
-        paste0("Dew point: ", dataPoint %>% dplyr::pull(dwptF), " °F")
+        paste0(
+          "Dew point: ", format(dataPoint %>% dplyr::pull(dwptF), nsmall = 1), " °F"
+        )
       )
     )
   
@@ -78,7 +86,10 @@ fxn_valueBoxLayout <- function(inData) {
       showcase_layout = bslib::showcase_left_center(width = 0.45),
       
       title = "Precipitation",
-      value = paste0(dataPoint %>% dplyr::pull(precip_total_in), " in.")
+      value = 
+        paste0(format(dataPoint %>% dplyr::pull(precip_total_in), nsmall = 2), " in."),
+      
+      htmltools::p(class = "value-box-text", "Daily total")
     )
   
   vb_Tsoil10cm <- 
@@ -96,7 +107,8 @@ fxn_valueBoxLayout <- function(inData) {
       showcase_layout = bslib::showcase_left_center(width = 0.45),
       
       title = "Soil Temperature",
-      value = paste0(dataPoint %>% dplyr::pull(temp_soil_10cmF), " °F"),
+      value = 
+        paste0(format(dataPoint %>% dplyr::pull(temp_soil_10cmF), nsmall = 1), " °F"),
       
       htmltools::p(class = "value-box-text", "4-inch depth")
     )
@@ -116,7 +128,8 @@ fxn_valueBoxLayout <- function(inData) {
       showcase_layout = bslib::showcase_left_center(width = 0.45),
       
       title = "Soil Temperature",
-      value = paste0(dataPoint %>% dplyr::pull(temp_soil_50cmF), " °F"),
+      value = 
+        paste0(format(dataPoint %>% dplyr::pull(temp_soil_50cmF), nsmall = 1), " °F"),
       
       htmltools::p(class = "value-box-text", "20-inch depth")
     )
@@ -136,7 +149,8 @@ fxn_valueBoxLayout <- function(inData) {
       showcase_layout = bslib::showcase_left_center(width = 0.45),
       
       title = "Solar Radiation",
-      value = paste0(dataPoint %>% dplyr::pull(sol_rad_Wm2), " W/m\u00B2")
+      value = 
+        paste0(format(dataPoint %>% dplyr::pull(sol_rad_Wm2), nsmall = 2), " W/m\u00B2")
     )
   
   vb_WS <- 
@@ -154,17 +168,20 @@ fxn_valueBoxLayout <- function(inData) {
       showcase_layout = bslib::showcase_left_center(width = 0.45),
       
       title = "Wind speed",
-      value = paste0(dataPoint %>% dplyr::pull(wind_spd_mph), " mph"),
+      value = 
+        paste0(format(dataPoint %>% dplyr::pull(wind_spd_mph), nsmall = 1), " mph"),
       
-      # htmltools::p(class = "value-box-text", "Direction: E"),
       htmltools::p(
         class = "value-box-text", 
-        paste0("Direction: ", fxn_deg_to_dir(valueIn = dataPoint %>% dplyr::pull(wind_vector_dir)))
+        paste0(
+          "Direction: ", fxn_deg_to_dir(valueIn = dataPoint %>% dplyr::pull(wind_vector_dir))
+        )
       ),
-      # htmltools::p(class = "value-box-text", "Maximum: 33.7 mph"),
       htmltools::p(
         class = "value-box-text", 
-        paste0("Maximum: ", dataPoint %>% dplyr::pull(wind_spd_max_mph), " mph")
+        paste0(
+          "Maximum: ", format(dataPoint %>% dplyr::pull(wind_spd_max_mph), nsmall = 1), " mph"
+        )
       )
     )
   
@@ -182,16 +199,21 @@ fxn_valueBoxLayout <- function(inData) {
       showcase = shiny::plotOutput("vbChart_WS2min"),
       showcase_layout = bslib::showcase_left_center(width = 0.45),
       
-      title = "Wind speed 2-min",
-      value = paste0(dataPoint %>% dplyr::pull(wind_2min_spd_mean_mph), " mph"),
+      title = htmltools::span("Wind speed", htmltools::tags$sub("2-min")),
+      value = 
+        paste0(format(dataPoint %>% dplyr::pull(wind_2min_spd_mean_mph), nsmall = 1), " mph"),
       
       htmltools::p(
         class = "value-box-text", 
-        paste0("Direction: ", fxn_deg_to_dir(valueIn = dataPoint %>% dplyr::pull(wind_2min_vector_dir)))
+        paste0(
+          "Direction: ", fxn_deg_to_dir(valueIn = dataPoint %>% dplyr::pull(wind_2min_vector_dir))
+        )
       ),
       htmltools::p(
         class = "value-box-text", 
-        paste0("Maximum: ", dataPoint %>% dplyr::pull(wind_2min_spd_max_mph_daily), " mph")
+        paste0(
+          "Maximum: ", format(dataPoint %>% dplyr::pull(wind_2min_spd_max_mph_daily), nsmall = 1), " mph"
+        )
       )
     )
   

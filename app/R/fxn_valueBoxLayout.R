@@ -6,6 +6,11 @@
 
 fxn_valueBoxLayout <- function(inData) {
   
+  dataPoint <- inData %>% 
+    dplyr::filter(
+      lubridate::as_datetime(datetime) == max(lubridate::as_datetime(datetime))
+    )
+  
   vb_T <- 
     bslib::value_box(
       class = "border-0 shadow-none",
@@ -17,100 +22,177 @@ fxn_valueBoxLayout <- function(inData) {
       min_height = NULL,
       theme = NULL,
       
+      showcase = shiny::plotOutput("vbChart_T"),
+      showcase_layout = bslib::showcase_left_center(width = 0.45),
+      
       title = "Air Temperature",
-      value = 
-        paste0(
-          dplyr::filter(
-            inData, 
-            lubridate::as_datetime(datetime) == max(lubridate::as_datetime(datetime))
-          ) %>% 
-            dplyr::pull(temp_airF),
-          " °F"
-        ),
+      value = paste0(dataPoint %>% dplyr::pull(temp_airF), " °F"),
+      
       # htmltools::p("Heat index: NA °F"), # Make into conditional
       # htmltools::p("Wind chill: NA °F"), # Make into conditional
-      htmltools::p(class = "value-box-text", "Maximum: 112.5 °F"),
-      htmltools::p(class = "value-box-text", "Minimum: 89.1 °F"),
-      showcase = shiny::plotOutput("vbChart_T"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45)
+      htmltools::p(
+        class = "value-box-text", 
+        paste0("Maximum: ", dataPoint %>% dplyr::pull(temp_air_maxF), " °F")
+      ),
+      htmltools::p(
+        class = "value-box-text", 
+        paste0("Minimum: ", dataPoint %>% dplyr::pull(temp_air_minF), " °F")
+      )
     )
   
   vb_RH <- 
     bslib::value_box(
       class = "border-0 shadow-none",
+      fill = TRUE,
+      full_screen = FALSE,
+      height = NULL,
+      id = NULL,
+      max_height = NULL,
+      min_height = NULL,
+      theme = NULL,
+      
+      showcase = shiny::plotOutput("vbChart_RH"),
+      showcase_layout = bslib::showcase_left_center(width = 0.45),
       
       title = "Relative Humidity",
-      value = "33 %",
-      htmltools::p(class = "value-box-text", "Dew point: 49.8 °F"),
-      showcase = shiny::plotOutput("vbChart_RH"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45)
+      value = paste0(dataPoint %>% dplyr::pull(relative_humidity), " %"),
+      
+      htmltools::p(
+        class = "value-box-text", 
+        paste0("Dew point: ", dataPoint %>% dplyr::pull(dwptF), " °F")
+      )
     )
   
   vb_P <- 
     bslib::value_box(
       class = "border-0 shadow-none",
+      fill = TRUE,
+      full_screen = FALSE,
+      height = NULL,
+      id = NULL,
+      max_height = NULL,
+      min_height = NULL,
+      theme = NULL,
+      
+      showcase = shiny::plotOutput("vbChart_P"),
+      showcase_layout = bslib::showcase_left_center(width = 0.45),
       
       title = "Precipitation",
-      value = "0.00 inches",
-      htmltools::p(class = "value-box-text", "Since midnight"),
-      showcase = shiny::plotOutput("vbChart_P"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45)
+      value = paste0(dataPoint %>% dplyr::pull(precip_total_in), " in.")
     )
   
   vb_Tsoil10cm <- 
     bslib::value_box(
       class = "border-0 shadow-none",
+      fill = TRUE,
+      full_screen = FALSE,
+      height = NULL,
+      id = NULL,
+      max_height = NULL,
+      min_height = NULL,
+      theme = NULL,
+      
+      showcase = shiny::plotOutput("vbChart_Tsoil10cm"),
+      showcase_layout = bslib::showcase_left_center(width = 0.45),
       
       title = "Soil Temperature",
-      value = "90.4 °F",
-      htmltools::p(class = "value-box-text", "4-inch depth"),
-      showcase = shiny::plotOutput("vbChart_Tsoil10cm"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45)
+      value = paste0(dataPoint %>% dplyr::pull(temp_soil_10cmF), " °F"),
+      
+      htmltools::p(class = "value-box-text", "4-inch depth")
     )
   
   vb_Tsoil50cm <-
     bslib::value_box(
       class = "border-0 shadow-none",
+      fill = TRUE,
+      full_screen = FALSE,
+      height = NULL,
+      id = NULL,
+      max_height = NULL,
+      min_height = NULL,
+      theme = NULL,
+      
+      showcase = shiny::plotOutput("vbChart_Tsoil50cm"),
+      showcase_layout = bslib::showcase_left_center(width = 0.45),
       
       title = "Soil Temperature",
-      value = "82.7 °F",
-      htmltools::p(class = "value-box-text", "20-inch depth"),
-      showcase = shiny::plotOutput("vbChart_Tsoil50cm"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45)
+      value = paste0(dataPoint %>% dplyr::pull(temp_soil_50cmF), " °F"),
+      
+      htmltools::p(class = "value-box-text", "20-inch depth")
     )
   
   vb_SR <- 
     bslib::value_box(
       class = "border-0 shadow-none",
+      fill = TRUE,
+      full_screen = FALSE,
+      height = NULL,
+      id = NULL,
+      max_height = NULL,
+      min_height = NULL,
+      theme = NULL,
+      
+      showcase = shiny::plotOutput("vbChart_SR"),
+      showcase_layout = bslib::showcase_left_center(width = 0.45),
       
       title = "Solar Radiation",
-      value = "560.34 W/m\u00B2",
-      showcase = shiny::plotOutput("vbChart_SR"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45)
+      value = paste0(dataPoint %>% dplyr::pull(sol_rad_Wm2), " W/m\u00B2")
     )
   
   vb_WS <- 
     bslib::value_box(
       class = "border-0 shadow-none",
+      fill = TRUE,
+      full_screen = FALSE,
+      height = NULL,
+      id = NULL,
+      max_height = NULL,
+      min_height = NULL,
+      theme = NULL,
+      
+      showcase = shiny::plotOutput("vbChart_WS"),
+      showcase_layout = bslib::showcase_left_center(width = 0.45),
       
       title = "Wind speed",
-      value = "10.5 mph",
-      htmltools::p(class = "value-box-text", "Direction: E"),
-      htmltools::p(class = "value-box-text", "Maximum: 33.7 mph"),
-      showcase = shiny::plotOutput("vbChart_WS"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45)
+      value = paste0(dataPoint %>% dplyr::pull(wind_spd_mph), " mph"),
+      
+      # htmltools::p(class = "value-box-text", "Direction: E"),
+      htmltools::p(
+        class = "value-box-text", 
+        paste0("Direction: ", fxn_deg_to_dir(valueIn = dataPoint %>% dplyr::pull(wind_vector_dir)))
+      ),
+      # htmltools::p(class = "value-box-text", "Maximum: 33.7 mph"),
+      htmltools::p(
+        class = "value-box-text", 
+        paste0("Maximum: ", dataPoint %>% dplyr::pull(wind_spd_max_mph), " mph")
+      )
     )
   
   vb_WS2min <- 
     bslib::value_box(
       class = "border-0 shadow-none",
+      fill = TRUE,
+      full_screen = FALSE,
+      height = NULL,
+      id = NULL,
+      max_height = NULL,
+      min_height = NULL,
+      theme = NULL,
+      
+      showcase = shiny::plotOutput("vbChart_WS2min"),
+      showcase_layout = bslib::showcase_left_center(width = 0.45),
       
       title = "Wind speed 2-min",
-      value = "7.4 mph",
-      htmltools::p(class = "value-box-text", "Direction: SE"),
-      htmltools::p(class = "value-box-text", "Maximum: 24.9 mph"),
-      showcase = shiny::plotOutput("vbChart_WS2min"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45)
+      value = paste0(dataPoint %>% dplyr::pull(wind_2min_spd_mean_mph), " mph"),
+      
+      htmltools::p(
+        class = "value-box-text", 
+        paste0("Direction: ", fxn_deg_to_dir(valueIn = dataPoint %>% dplyr::pull(wind_2min_vector_dir)))
+      ),
+      htmltools::p(
+        class = "value-box-text", 
+        paste0("Maximum: ", dataPoint %>% dplyr::pull(wind_2min_spd_max_mph_daily), " mph")
+      )
     )
   
   valueBoxLayout <- 

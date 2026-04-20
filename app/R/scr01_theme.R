@@ -69,4 +69,15 @@ theme =
     .tooltip-inner {
       background-color: rgba(30, 82, 136, 0.9) !important;
     }
+    
+    .value-box-area {
+      padding-bottom: 16px !important;
+      padding-top: 16px !important;
+    }
+    
+    .value-box-showcase {
+      padding-bottom: 16px !important;
+      padding-left: 8px !important;
+      padding-top: 16px !important;
+    }
   ")

@@ -67,6 +67,8 @@ fxn_pageBottomText <- function() {
     htmltools::p(
       htmltools::HTML(
         paste0(
+          "Sparkline charts show data over the past 12 hours. Maximum values, minimum values, and daily totals are since midnight local time. Values of 'NA' denote no data.",
+          htmltools::br(), htmltools::br(),
           "AZMet 15-minute data are from ", apiURL, " and accessed using the ", azmetrURL, " R package. Values are based on provisional data. More information about ", webpageDataVariables, ", ", webpageNetworkMap, ", and ", webpageStationMetadata, " is available on the ", webpageAZMet, ". Users of AZMet data and related information assume all risks of its use.",
           htmltools::br(), htmltools::br(),
           "To cite the above AZMet data, please use: 'Arizona Meteorological Network (", todayYear, ") Arizona Meteorological Network (AZMet) Data. https:://azmet.arizona.edu. Accessed ", todayDate, "', along with 'Arizona Meteorological Network (", todayYear, ") AZMet in Real-time: Mobile. https://viz.datascience.arizona.edu/azmet/azmet-in-real-time-mobile. Accessed ", todayDate, "'.",

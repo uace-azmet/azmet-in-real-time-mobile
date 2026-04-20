@@ -68,7 +68,7 @@
   color: #606060;
   font-family: monospace !important;
   font-size: 0.85rem;
-  /* margin-bottom: 12px; */
+  margin-bottom: 24px !important;
   /* margin-top: 12px; */
 }
 
@@ -90,7 +90,7 @@
 .page-bottom-text {
   color: #191919;
   font-size: 0.85rem;
-  margin-top: 16px;
+  margin-top: 48px;
 }
 
 .selectize-dropdown .active {
@@ -142,8 +142,3 @@
   color: #191919;
   font-weight: bold !important;
 }
-
-/* .bslib-value-box .value-box-showcase {
-        align-items: left !important;
-        padding-left: 0 !important;
-      } */

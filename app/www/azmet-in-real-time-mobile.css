@@ -129,6 +129,10 @@
   top: calc(50%) !important; 
 }
 
+.value-box-text {
+  color: #606060;
+}
+
 .value-box-title {
   color: #191919;
   font-weight: bold !important;

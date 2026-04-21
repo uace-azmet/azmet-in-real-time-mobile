@@ -5,6 +5,17 @@
 # 'azmet-shiny-template.html': <!-- Google tag (gtag.js) -->
 
 
+# PROCESS FOR PWA -----
+
+# Copy `azmet-pwa-icon-clock15-mobile-192.png` to `app/www/`
+# Copy `azmet-pwa-icon-clock15-mobile-512.png` to `app/www/`
+# Copy `azmet-pwa-icon-clock15-mobile-1024.svg` to `app/www/`
+# Copy `pwa-service-worker.js` to `app/www/`, edit
+# Copy `pwa.html` to `app/www/`, edit
+# Copy `manifest.webmanifest` to `app/www/`
+# Add `tags$head(includeHTML("www/pwa.html"))` to `app.R`
+
+
 # # For now just get data for all sites on app load
 # data <- fxn_az15min()
 
@@ -35,7 +46,7 @@ ui <-
         fillable_mobile = FALSE,
         theme = theme, # `scr##_theme.R`
         
-        # htmltools::tags$head(htmltools::includeHTML("www/pwa/pwa.html")),
+        htmltools::tags$head(htmltools::includeHTML("www/pwa.html")),
         
         htmltools::p(
           class = "azmet-station-title",

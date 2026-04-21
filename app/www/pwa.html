@@ -1,0 +1,19 @@
+<!-- register service worker -->
+<script>
+    if ('serviceWorker'in navigator) {
+        navigator.serviceWorker.register('/azmet/azmet-in-real-time-mobile/pwa-service-worker.js', {
+            scope: '/azmet/azmet-in-real-time-mobile/'
+        }).then(function() {
+            console.log('Service Worker Registered');
+        });
+    }
+</script>
+<!-- register webmanifest -->
+<link rel="manifest" href="/azmet/azmet-in-real-time-mobile/manifest.webmanifest"/>
+<!-- link to app icon for older browsers -->
+<link rel="icon" type="image/png" href="/azmet/azmet-in-real-time-mobile/azmet-pwa-icon-clock15-mobile-512.png"/>
+<!-- 
+Script to generate other types of icons and splash screens 
+Source: https://github.com/GoogleChromeLabs/pwacompat
+-->
+<script async src="https://cdn.jsdelivr.net/npm/pwacompat" crossorigin="anonymous"></script>

@@ -1,0 +1,31 @@
+{
+  "name": "AZMet in Real-time: Mobile",
+  "short_name": "AZMet Mobile",
+  "start_url": "https://viz.datascience.arizona.edu/azmet/azmet-in-real-time-mobile/",
+  "id": "https://viz.datascience.arizona.edu/azmet/azmet-in-real-time-mobile/",
+  "background_color": "#1E5288",
+  "description": "Summaries of the latest 15-minute data from stations across the network",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#343a40",
+  "icons": [
+  {
+    "src": "azmet-pwa-icon-clock15-mobile-192.png",
+    "sizes": "192x192",
+    "type": "image/png",
+    "purpose": "maskable"
+  },
+  {
+    "src": "azmet-pwa-icon-clock15-mobile-512.png",
+    "sizes": "512x512",
+    "type": "image/png",
+    "purpose": "maskable"
+  },
+  {
+    "src": "azmet-pwa-icon-clock15-mobile-1024.svg",
+    "sizes": "any",
+    "type": "image/svg+xml",
+    "purpose": "maskable"
+  }
+  ]
+}

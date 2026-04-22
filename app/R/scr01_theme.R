@@ -72,6 +72,7 @@ theme =
     
     .value-box-area {
       padding-bottom: 16px !important;
+      padding-right: 8px !important;
       padding-top: 16px !important;
     }
     

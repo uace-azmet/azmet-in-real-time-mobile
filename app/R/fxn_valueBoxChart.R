@@ -20,8 +20,8 @@ fxn_valueBoxChart <- function(inData, inVariable) {
         y = {{ inVariable }}
       )
     ) + 
-    geom_line(color = "#606060") + 
-    geom_point(data = dataPoint, color = "#191919") +
+    geom_line(color = "#191919") + 
+    geom_point(data = dataPoint, color = "#191919", size = 2) +
     theme_void()
   
   return(valueBoxChart)

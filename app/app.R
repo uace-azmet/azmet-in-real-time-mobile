@@ -235,7 +235,7 @@ server <- function(input, output, session) {
         height_mobile = NULL,
         max_height = NULL,
         min_height = NULL,
-        width = 1
+        width = "320px"
       )
     )
 }

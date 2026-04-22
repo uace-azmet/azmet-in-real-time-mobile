@@ -23,7 +23,7 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_T"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45),
+      showcase_layout = bslib::showcase_left_center(width = 0.4),
       
       title = "Air Temperature",
       value = 
@@ -57,7 +57,7 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_RH"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45),
+      showcase_layout = bslib::showcase_left_center(width = 0.4),
       
       title = "Relative Humidity",
       value = 
@@ -68,7 +68,8 @@ fxn_valueBoxLayout <- function(inData) {
         paste0(
           "Dew point: ", format(dataPoint %>% dplyr::pull(dwptF), nsmall = 1), " °F"
         )
-      )
+      ),
+      htmltools::br() # For even spacing when more than one column
     )
   
   vb_P <- 
@@ -83,13 +84,14 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_P"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45),
+      showcase_layout = bslib::showcase_left_center(width = 0.4),
       
       title = "Precipitation",
       value = 
         paste0(format(dataPoint %>% dplyr::pull(precip_total_in), nsmall = 2), " in."),
       
-      htmltools::p(class = "value-box-text", "Daily total")
+      htmltools::p(class = "value-box-text", "Daily total"),
+      htmltools::br() # For even spacing when more than one column
     )
   
   vb_Tsoil10cm <- 
@@ -104,13 +106,14 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_Tsoil10cm"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45),
+      showcase_layout = bslib::showcase_left_center(width = 0.4),
       
       title = "Soil Temperature",
       value = 
         paste0(format(dataPoint %>% dplyr::pull(temp_soil_10cmF), nsmall = 1), " °F"),
       
-      htmltools::p(class = "value-box-text", "4-inch depth")
+      htmltools::p(class = "value-box-text", "4-inch depth"),
+      htmltools::br() # For even spacing when more than one column
     )
   
   vb_Tsoil50cm <-
@@ -125,13 +128,14 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_Tsoil50cm"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45),
+      showcase_layout = bslib::showcase_left_center(width = 0.4),
       
       title = "Soil Temperature",
       value = 
         paste0(format(dataPoint %>% dplyr::pull(temp_soil_50cmF), nsmall = 1), " °F"),
       
-      htmltools::p(class = "value-box-text", "20-inch depth")
+      htmltools::p(class = "value-box-text", "20-inch depth"),
+      htmltools::br() # For even spacing when more than one column
     )
   
   vb_SR <- 
@@ -146,11 +150,14 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_SR"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45),
+      showcase_layout = bslib::showcase_left_center(width = 0.4),
       
       title = "Solar Radiation",
       value = 
-        paste0(format(dataPoint %>% dplyr::pull(sol_rad_Wm2), nsmall = 2), " W/m\u00B2")
+        paste0(format(dataPoint %>% dplyr::pull(sol_rad_Wm2), nsmall = 2), " W/m\u00B2"),
+      
+      htmltools::br(), # For even spacing when more than one column
+      htmltools::br() # For even spacing when more than one column
     )
   
   vb_WS <- 
@@ -165,7 +172,7 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_WS"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45),
+      showcase_layout = bslib::showcase_left_center(width = 0.4),
       
       title = "Wind speed",
       value = 
@@ -197,7 +204,7 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_WS2min"),
-      showcase_layout = bslib::showcase_left_center(width = 0.45),
+      showcase_layout = bslib::showcase_left_center(width = 0.4),
       
       title = htmltools::span("Wind speed", htmltools::tags$sub("2-min")),
       value = 

@@ -35,12 +35,24 @@ library(shinyjs)
 azmetStationMetadata <- azmetr::station_info |>
   dplyr::mutate(end_date = NA)
 
-azmetStationChoices <- azmetStationMetadata |> 
-  dplyr::filter(meta_station_name != "Test") |>
-  dplyr::pull(meta_station_name) |> 
-  sort()
+# azmetStationChoices <- azmetStationMetadata |>
+#   dplyr::filter(meta_station_name != "Test") |>
+#   dplyr::pull(meta_station_name) |>
+#   sort()
 
-azmetStationChoices <- c(NULL, azmetStationChoices)
+# azmetStationChoices <- c(NULL, azmetStationChoices)
+
+azmetStationChoices <- 
+dplyr::bind_rows(
+dplyr::tibble(choice = "Select a station ...", value = "", lat = NA, lon = NA),
+azmetStationMetadata |>
+  dplyr::select(
+choice = meta_station_name,
+value = meta_station_name,
+lat = latitude,
+lon = longitude
+)
+)  
 
 showLatestUpdate <- shiny::reactiveVal(FALSE)
 showPageBottomText <- shiny::reactiveVal(FALSE)

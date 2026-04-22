@@ -7,9 +7,7 @@
 
 # PROCESS FOR PWA -----
 
-# Copy `azmet-pwa-icon-clock15-mobile-192.png` to `app/www/`
-# Copy `azmet-pwa-icon-clock15-mobile-512.png` to `app/www/`
-# Copy `azmet-pwa-icon-clock15-mobile-1024.svg` to `app/www/`
+# Copy icons to `app/www/images/`
 # Copy `pwa-service-worker.js` to `app/www/`, edit
 # Copy `pwa.html` to `app/www/`, edit
 # Copy `manifest.webmanifest` to `app/www/`

@@ -73,10 +73,6 @@
 }
 
 .locator-pin {
-  margin-bottom: 4px;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-top: 0px;
   stroke: currentColor; /* Inherits the 'color' property of the parent */
   stroke-width: 0.5;
   transform: scale(1.5);
@@ -141,4 +137,11 @@
 .value-box-value {
   color: #191919;
   font-weight: bold !important;
+}
+
+/* id */
+
+#locatorPin {
+  margin-bottom: 6px !important;
+  padding-bottom: 6px !important;
 }

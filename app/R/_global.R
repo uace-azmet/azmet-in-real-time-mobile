@@ -9,9 +9,6 @@ library(geoloc) # https://github.com/ColinFay/geoloc
 library(ggplot2)
 library(htmltools)
 library(lubridate)
-# library(plotly)
-# library(RColorBrewer)
-# library(reactable)
 library(shiny)
 library(shinyjs)
 
@@ -29,18 +26,22 @@ library(shinyjs)
 # Variables --------------------
 
 
-# Initialize, part of keeping `input$azmetStation` selection when refreshing data
-# azmetStation <- shiny::reactiveVal(value = "Aguila")
-
 azmetStationMetadata <- azmetr::station_info |>
-  dplyr::mutate(end_date = NA)
-
-azmetStationChoices <- azmetStationMetadata |> 
+  dplyr::mutate(end_date = NA) |>
   dplyr::filter(meta_station_name != "Test") |>
-  dplyr::pull(meta_station_name) |> 
-  sort()
+  dplyr::arrange(meta_station_name)
 
-azmetStationChoices <- c(NULL, azmetStationChoices)
+azmetStationChoices <- 
+  dplyr::bind_rows(
+    dplyr::tibble(choice = "Select a station...", value = "", lat = NA, lon = NA),
+    azmetStationMetadata |>
+      dplyr::select(
+        choice = meta_station_name,
+        value = meta_station_name,
+        lat = latitude,
+        lon = longitude
+      )
+  )  
 
 showLatestUpdate <- shiny::reactiveVal(FALSE)
 showPageBottomText <- shiny::reactiveVal(FALSE)

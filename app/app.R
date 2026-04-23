@@ -1,10 +1,17 @@
 # Mobile-first Shiny app displaying tabular and graphical summaries of the latest 15-minute data from stations across the network
 
-# Add code for the following
-#
-# 'azmet-shiny-template.html': <!-- Google tag (gtag.js) -->
+
+# PROCESS FOR PWA -----
+
+# Copy icons to `app/www/images/`
+# Copy `pwa-service-worker.js` to `app/www/`, edit
+# Copy `pwa.html` to `app/www/`, edit
+# Copy `manifest.webmanifest` to `app/www/`
+# Add `tags$head(includeHTML("www/pwa.html"))` to `app.R`
+
 
 # UI --------------------
+
 
 ui <-
   htmltools::htmlTemplate(
@@ -24,18 +31,15 @@ ui <-
         htmltools::HTML("&nbsp;AZMet Station&nbsp;"),
         bslib::tooltip(
           bsicons::bs_icon("info-circle"),
-          "Select an AZMet station or tap on the location pin to choose the nearest one.",
+          "Select an AZMet station or tap on the location pin to find the nearest one.",
           id = "azmetStationInfo",
           placement = "right"
         )
       ),
 
       htmltools::div(
-        class = "azmet-station-selection-div",
-        style = "display: flex; align-items: center; column-gap: 1.5rem;", # Flexbox styling
-
         location_select_ui(
-          "azmetStation",
+          id = "azmetStation",
           label = NULL,
           locations_df = azmetStationChoices
         )
@@ -50,11 +54,15 @@ ui <-
 
 # Server --------------------
 
+
 server <- function(input, output, session) {
+  
   shinyjs::useShinyjs(html = TRUE)
+  
   shinyjs::hideElement(id = "latestUpdate")
   shinyjs::hideElement(id = "pageBottomText")
   shinyjs::hideElement(id = "valueBoxLayout")
+
 
   # Observables -----
 
@@ -68,12 +76,14 @@ server <- function(input, output, session) {
     showValueBoxLayout(TRUE)
   })
 
+  
   # Reactives -----
 
   azmetStation <- location_select_server(
-    "azmetStation",
+    id = "azmetStation",
     locations_df = azmetStationChoices
   )
+  
   az15min <-
     shiny::reactive({
       fxn_az15min(azmetStation())
@@ -89,6 +99,7 @@ server <- function(input, output, session) {
       fxn_valueBoxLayout(inData = az15min())
     })
 
+  
   # Outputs -----
 
   output$latestUpdate <-
@@ -163,5 +174,6 @@ server <- function(input, output, session) {
 
 
 # Run --------------------
+
 
 shiny::shinyApp(ui = ui, server = server)

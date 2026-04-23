@@ -16,7 +16,7 @@ ui <-
       fillable_mobile = FALSE,
       theme = theme, # `scr##_theme.R`
 
-      # htmltools::tags$head(htmltools::includeHTML("www/pwa/pwa.html")),
+      htmltools::tags$head(htmltools::includeHTML("www/pwa.html")),
 
       htmltools::p(
         class = "azmet-station-title",
@@ -156,7 +156,7 @@ server <- function(input, output, session) {
         height_mobile = NULL,
         max_height = NULL,
         min_height = NULL,
-        width = 1
+        width = "320px"
       )
     )
 }

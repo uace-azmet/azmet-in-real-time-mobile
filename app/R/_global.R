@@ -11,6 +11,7 @@ library(htmltools)
 library(lubridate)
 library(shiny)
 library(shinyjs)
+library(cookies)
 
 
 # Files --------------------

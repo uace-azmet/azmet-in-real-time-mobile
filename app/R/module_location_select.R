@@ -6,8 +6,8 @@
 #' @param id
 #' @param label passed to [shiny::selectInput()].
 #' @param locations_df a data frame with the columns `choice`, `value`, `lat`, and `lon`.
-#' @param selected passed to [shiny::selectInput()]; one of the `value` options in `locations_df`.
-#' @param ... additional, arguments passed to [shiny::selectInput()].
+#' @param ... additional, arguments passed to [shiny::selectInput()] (although,
+#'   for `selected`, use the argument in `location_select_server`).
 location_select_ui <- function(
   id,
   label = "Select Location:",
@@ -55,8 +55,15 @@ location_select_ui <- function(
 #'
 #' @param id same ID as provided to `location_select_ui()`.
 #' @param locations_df same data frame as provided to `locations_select_ui()`.
-location_select_server <- function(id, locations_df) {
+#' @param selected passed to [shiny::selectInput()]; one of the `value` options
+#'   in `locations_df`.
+location_select_server <- function(id, locations_df, selected = NULL) {
   moduleServer(id, function(input, output, session) {
+    updateSelectInput(
+      session,
+      "select",
+      selected = selected
+    )
     # Update choice when location is received
     shiny::observe({
       shiny::req(input$loc_lat, input$loc_lon)

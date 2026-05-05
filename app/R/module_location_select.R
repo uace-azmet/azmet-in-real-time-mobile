@@ -71,6 +71,14 @@ location_select_server <- function(id, locations_df, selected = NULL) {
       user_lat <- as.numeric(input$loc_lat)
       user_lon <- as.numeric(input$loc_lon)
 
+      # If location services are disabled or there is an error getting user
+      # location, as.numeric() will coerce these to NAs or length 0 numeric
+      # vectors.  Then, the `req()`s below will prevent the rest of the code
+      # here from running and the selected station will not change.]
+
+      shiny::req(user_lat)
+      shiny::req(user_lon)
+
       # Find nearest location using Haversine distance
       distances <- sapply(1:nrow(locations_df), function(i) {
         lat <- locations_df$lat[i]

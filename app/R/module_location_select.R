@@ -29,23 +29,17 @@ location_select_ui <- function(
     # class = "d-flex flex-row justify-content-center align-items-center align-middle",
     class = "azmet-station-selection-div",
     style = "display: flex; align-items: center; column-gap: 1.0rem;", # Flexbox styling
-    
-    htmltools::div(
-      # class = "p-1",
-      shiny::selectInput(
-        ns("select"),
-        label,
-        choices = choices,
-        selected = selected,
-        ...
-      )
+    shiny::selectInput(
+      ns("select"),
+      label,
+      choices = choices,
+      selected = selected,
+      ...
     ),
-    htmltools::div(
-      geoloc::button_geoloc(
-        ns("loc"),
-        bsicons::bs_icon("geo-alt", class = "locator-pin"),
-        class = "btn btn-default btn-blue geoloc"
-      )
+    geoloc::button_geoloc(
+      ns("loc"),
+      bsicons::bs_icon("geo-alt", class = "locator-pin"),
+      class = "btn btn-default btn-blue geoloc"
     )
   )
 }

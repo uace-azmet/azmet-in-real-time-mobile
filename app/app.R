@@ -49,8 +49,8 @@ ui <-
       shiny::uiOutput(outputId = "valueBoxLayout"),
       shiny::htmlOutput(outputId = "pageBottomText")
     )
-  ) |> cookies::add_cookie_handlers()
-   # htmltools::htmlTemplate()
+  ) |> 
+  cookies::add_cookie_handlers()
 
 
 # Server --------------------
@@ -80,21 +80,21 @@ server <- function(input, output, session) {
   
   # Reactives -----
 
-  observeEvent(
-    azmetStation(),
-    {
-      try(cookies::set_cookie(
+  shiny::observeEvent(azmetStation(), {
+    try(
+      cookies::set_cookie(
         cookie_name = "station_choice",
         cookie_value = azmetStation()
-      ))
-    }
-  )
+      )
+    )
+  })
 
-  azmetStation <- location_select_server(
-    id = "azmetStation",
-    locations_df = azmetStationChoices,
-    selected = isolate(cookies::get_cookie("station_choice")) # infinite loop of updates w/o isolate()
-  )
+  azmetStation <- 
+    location_select_server(
+      id = "azmetStation",
+      locations_df = azmetStationChoices,
+      selected = isolate(cookies::get_cookie("station_choice")) # infinite loop of updates w/o isolate()
+    )
   
   az15min <-
     shiny::reactive({

@@ -29,7 +29,12 @@ fxn_valueBoxLayout <- function(inData) {
       value = 
         paste0(format(dataPoint %>% dplyr::pull(temp_airF), nsmall = 1), " °F"),
       
-      # htmltools::p("Heat index: NA °F"), # Make into conditional
+      htmltools::p(
+        class = "value-box-text", 
+        paste0(
+          "Heat index: ", format(dataPoint %>% dplyr::pull(temp_heat_indexF), nsmall = 1), " °F"
+        )
+      ),
       htmltools::p(
         class = "value-box-text", 
         paste0(

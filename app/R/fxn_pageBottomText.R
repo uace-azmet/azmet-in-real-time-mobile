@@ -22,6 +22,13 @@ fxn_pageBottomText <- function() {
       target="_blank"
     )
   
+  heatIndexEquationURL <- 
+    a(
+      "equation", 
+      href="https://www.wpc.ncep.noaa.gov/html/heatindex_equation.shtml",
+      target="_blank"
+    )
+  
   todayDate <- gsub(" 0", " ", format(lubridate::today(), "%B %d, %Y"))
   
   todayYear <- lubridate::year(lubridate::today())
@@ -67,7 +74,7 @@ fxn_pageBottomText <- function() {
     htmltools::p(
       htmltools::HTML(
         paste0(
-          "Sparkline charts show data over the past 12 hours. Maximum values, minimum values, and daily totals are since midnight local time. Values of 'NA' denote no data.",
+          "Sparkline charts show data over the past 12 hours. Heat index is the apparent, or 'feels like', temperature based on air temperature, relative humidity, and the National Weather Service ", heatIndexEquationURL, ". Maximum values, minimum values, and daily totals are since midnight local time. Values of 'NA' denote no data.",
           htmltools::br(), htmltools::br(),
           "AZMet 15-minute data are from ", apiURL, " and accessed using the ", azmetrURL, " R package. Values are based on provisional data. More information about ", webpageDataVariables, ", ", webpageNetworkMap, ", and ", webpageStationMetadata, " is available on the ", webpageAZMet, ". Users of AZMet data and related information assume all risks of its use.",
           htmltools::br(), htmltools::br(),

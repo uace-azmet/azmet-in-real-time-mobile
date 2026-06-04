@@ -46,6 +46,12 @@ fxn_valueBoxLayout <- function(inData) {
         paste0(
           "Minimum: ", format(dataPoint %>% dplyr::pull(temp_air_minF), nsmall = 1), " °F"
         )
+      ),
+      htmltools::p(
+        class = "value-box-text", 
+        paste0(
+          "THI: ", format(dataPoint %>% dplyr::pull(temp_humidity_index), nsmall = 0)
+        )
       )
       # htmltools::p("Wind chill: NA °F"), # Make into conditional
     )

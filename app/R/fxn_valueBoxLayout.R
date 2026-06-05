@@ -193,6 +193,15 @@ fxn_valueBoxLayout <- function(inData) {
         class = "value-box-text", 
         paste0(
           "Direction: ", fxn_deg_to_dir(valueIn = dataPoint %>% dplyr::pull(wind_vector_dir))
+        ),
+        htmltools::HTML(
+          sprintf(
+            "<span style='%s;'><strong>&#8595;</strong></span>",
+            sprintf(
+              "display: inline-block; transform: rotate(%fdeg);", 
+              dataPoint %>% dplyr::pull(wind_vector_dir)
+            )
+          )
         )
       ),
       htmltools::p(
@@ -225,6 +234,15 @@ fxn_valueBoxLayout <- function(inData) {
         class = "value-box-text", 
         paste0(
           "Direction: ", fxn_deg_to_dir(valueIn = dataPoint %>% dplyr::pull(wind_2min_vector_dir))
+        ),
+        htmltools::HTML(
+          sprintf(
+            "<span style='%s;'><strong>&#8595;</strong></span>", 
+            sprintf(
+              "display: inline-block; transform: rotate(%fdeg);", 
+              dataPoint %>% dplyr::pull(wind_2min_vector_dir)
+            )
+          )
         )
       ),
       htmltools::p(

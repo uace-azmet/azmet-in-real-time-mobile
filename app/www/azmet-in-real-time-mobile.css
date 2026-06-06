@@ -24,6 +24,11 @@
   padding-bottom: 32px;
 }
 
+.bolder-icon {
+  stroke-width: 0.5;
+  stroke: currentColor; /* Inherits the 'color' property of the parent */
+}
+
 .btn.geoloc {
   background-color: transparent; 
   border-color: transparent; 

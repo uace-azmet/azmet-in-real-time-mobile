@@ -23,7 +23,7 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_T"),
-      showcase_layout = bslib::showcase_left_center(width = 0.4),
+      showcase_layout = bslib::showcase_left_center(width = 0.43),
       
       title = "Air Temperature",
       value = 
@@ -68,7 +68,7 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_RH"),
-      showcase_layout = bslib::showcase_left_center(width = 0.4),
+      showcase_layout = bslib::showcase_left_center(width = 0.43),
       
       title = "Relative Humidity",
       value = 
@@ -95,7 +95,7 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_P"),
-      showcase_layout = bslib::showcase_left_center(width = 0.4),
+      showcase_layout = bslib::showcase_left_center(width = 0.43),
       
       title = "Precipitation",
       value = 
@@ -117,7 +117,7 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_Tsoil10cm"),
-      showcase_layout = bslib::showcase_left_center(width = 0.4),
+      showcase_layout = bslib::showcase_left_center(width = 0.43),
       
       title = "Soil Temperature",
       value = 
@@ -139,7 +139,7 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_Tsoil50cm"),
-      showcase_layout = bslib::showcase_left_center(width = 0.4),
+      showcase_layout = bslib::showcase_left_center(width = 0.43),
       
       title = "Soil Temperature",
       value = 
@@ -161,7 +161,7 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_SR"),
-      showcase_layout = bslib::showcase_left_center(width = 0.4),
+      showcase_layout = bslib::showcase_left_center(width = 0.43),
       
       title = "Solar Radiation",
       value = 
@@ -183,7 +183,7 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_WS"),
-      showcase_layout = bslib::showcase_left_center(width = 0.4),
+      showcase_layout = bslib::showcase_left_center(width = 0.43),
       
       title = "Wind speed",
       value = 
@@ -224,7 +224,7 @@ fxn_valueBoxLayout <- function(inData) {
       theme = NULL,
       
       showcase = shiny::plotOutput("vbChart_WS2min"),
-      showcase_layout = bslib::showcase_left_center(width = 0.4),
+      showcase_layout = bslib::showcase_left_center(width = 0.43),
       
       title = htmltools::span("Wind speed", htmltools::tags$sub("2-min")),
       value = 

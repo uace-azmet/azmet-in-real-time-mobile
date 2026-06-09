@@ -125,6 +125,14 @@
   top: calc(50%) !important; 
 }
 
+.value-box-area {
+  padding-right: 0px !important;
+}
+
+.value-box-showcase {
+  padding-left: 0px !important;
+}
+
 .value-box-text {
   color: #606060;
 }
